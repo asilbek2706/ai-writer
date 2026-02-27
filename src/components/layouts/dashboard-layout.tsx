@@ -8,7 +8,7 @@ export default function DashboardLayout() {
             <Sidebar />
             <div className='w-full'>
                 <Navbar />
-                <div className='p-4'>
+                <div className='p-8'>
                     <Outlet />
                 </div>
             </div>
