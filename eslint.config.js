@@ -30,7 +30,7 @@ export default tseslint.config(
         'max-len': [
           'warn',
           {
-            'code': 300,
+            'code': 400,
             'ignoreComments': true,
             'ignoreUrls': true
           }
