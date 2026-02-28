@@ -4,6 +4,7 @@ import { Textarea } from '@/components/ui/textarea.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { FormEvent, useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { generateArticle } from '@/utils/gemini.ts';
 
 export default function ContentCreate() {
     const [isLoading, setIsLoading] = useState(false);
@@ -12,10 +13,12 @@ export default function ContentCreate() {
         description: '',
     });
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         setIsLoading(true);
-        console.log(form);
+        const result = await generateArticle(form.title, form.description);
+        console.log(result);
+        setIsLoading(false);
     };
 
     const handleChange = (event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -49,7 +52,7 @@ export default function ContentCreate() {
                     />
                 </div>
                 <Button disabled={isLoading}>
-                    { isLoading && <Loader2 className='mr-2 h-4 w-4 animate-spin' /> }
+                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     Generate
                 </Button>
             </form>
