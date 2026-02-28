@@ -22,7 +22,7 @@ export default function ContentViewer({ content }: ContentViewerProprs) {
 
     return (
         <Card className={'mt-4'}>
-            <CardContent className="p-8">
+            <CardContent className="p-4 md:p-5 lg:p-8">
                 <div className="prose lg:prose-xl">
                     <Markdown>{content}</Markdown>
                 </div>
