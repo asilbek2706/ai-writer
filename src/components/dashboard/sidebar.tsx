@@ -1,6 +1,6 @@
 import PromptHistory from '@/components/dashboard/prompt-history.tsx';
 import { TPromptHistory } from '@/shared/types/prompt-history.type.ts';
-import { PencilIcon, PencilSquareIcon } from '@heroicons/react/16/solid';
+import { PencilSquareIcon } from '@heroicons/react/16/solid';
 
 const mockItems: TPromptHistory[] = [
     {
