@@ -1,6 +1,6 @@
-import { Pencil } from 'lucide-react';
 import PromptHistory from '@/components/dashboard/prompt-history.tsx';
 import { TPromptHistory } from '@/shared/types/prompt-history.type.ts';
+import { PencilIcon, PencilSquareIcon } from '@heroicons/react/16/solid';
 
 const mockItems: TPromptHistory[] = [
     {
@@ -37,7 +37,7 @@ export default function Sidebar() {
             <div className="flex items-center justify-between">
                 <h1 className='text-xl font-semibold'>AI Witer</h1>
                 <button>
-                    <Pencil size={24} />
+                    <PencilSquareIcon className='w-6 h-6' />
                 </button>
             </div>
             <PromptHistory items={mockItems} />
