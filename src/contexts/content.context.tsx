@@ -55,7 +55,7 @@ const ContentContextProvider: FC<IProps> = ({ children }) => {
                     title,
                     description,
                     content,
-                    createdAt: new Date(),
+                    createdAt: dayjs().subtract(1, 'day').toDate(),
                 };
                 setContentItems([generatedContentItem, ...(contentItems || [])]);
             }
