@@ -4,6 +4,7 @@ import { useAppContext } from '@/contexts/app.context.tsx';
 import { Loader2 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { useContentContext } from '@/contexts/content.context.tsx';
+import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
     const { sidebarOpen } = useAppContext();
@@ -21,9 +22,9 @@ export default function Sidebar() {
                 {generatingContent ? (
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
-                    <button>
+                    <Link to='/dashboard'>
                         <PencilSquareIcon className="w-6 h-6" />
-                    </button>
+                    </Link>
                 )}
             </div>
             <PromptHistory items={historyItems} />

@@ -14,6 +14,7 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form.tsx';
+import { Textarea } from '@/components/ui/textarea.tsx';
 
 type ContentCreateFormProps = {
     isLoading: boolean;
@@ -72,7 +73,12 @@ export default function ContentCreateForm({
                         <FormItem>
                             <FormLabel>Description</FormLabel>
                             <FormControl>
-                                <Input placeholder={"Write about ReactJS form validation. Provide a real life examples."} {...field} />
+                                <Textarea
+                                    placeholder={"Write about ReactJS form validation. Provide a real life examples."}
+                                    rows={5}
+                                    {...field}
+
+                                />
                             </FormControl>
                             <FormDescription>
                                 Please, provide a description for your content
