@@ -1,8 +1,8 @@
 import { Input } from '@/components/ui/input.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Loader2 } from 'lucide-react';
-import { ContentCreateRequestParam } from '@/shared/types/content-create-request-param.ts';
 import { z } from 'zod';
+import { TContentCreateRequestParam } from '@/shared/types/content-create-request-param';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -17,7 +17,7 @@ import {
 
 type ContentCreateFormProps = {
     isLoading: boolean;
-    onSubmit: (params: ContentCreateRequestParam) => void;
+    onSubmit: (params: TContentCreateRequestParam) => void;
 }
 
 const formSchema = z.object({

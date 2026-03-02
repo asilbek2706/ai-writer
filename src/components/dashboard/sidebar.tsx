@@ -4,6 +4,7 @@ import { PencilSquareIcon } from '@heroicons/react/16/solid';
 import { useAppContext } from '@/contexts/app.context.tsx';
 import { Loader2 } from 'lucide-react';
 import { clsx } from 'clsx';
+import { useContentContext } from '@/contexts/content.context.tsx';
 
 const mockItems: TPromptHistory[] = [
     {
@@ -35,7 +36,8 @@ const mockItems: TPromptHistory[] = [
 ];
 
 export default function Sidebar() {
-    const { generatingContent, sidebarOpen } = useAppContext();
+    const { sidebarOpen } = useAppContext();
+    const { generatingContent } = useContentContext();
     return (
         <nav
             className={clsx(

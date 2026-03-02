@@ -1,27 +1,16 @@
-import { useContext, useState } from 'react';
-import { generateArticle } from '@/utils/apenai.ts';
+import { useState } from 'react';
 import ContentViewer from '@/components/dashboard/content-viewer.tsx';
 import ContentCreateForm from '@/components/dashboard/content-create-form.tsx';
-import { ContentCreateRequestParam } from '@/shared/types/content-create-request-param.ts';
-import { AppContext } from '@/contexts/app.context.tsx';
-import toast from 'react-hot-toast';
+import { useContentContext } from '@/contexts/content.context.tsx';
+import { TContentCreateRequestParam } from '@/shared/types/content-create-request-param.ts';
 
 export default function DashboardHome() {
-    const { generatingContent, setGeneratingContent } = useContext(AppContext);
+    const { generateContent, generatingContent } = useContentContext();
     const [content, setContent] = useState<string | null>(null);
 
-    const handleSubmit = async (params: ContentCreateRequestParam) => {
-        setGeneratingContent(true);
-        const { title, description } = params;
-        try {
-            const result = await generateArticle(title, description);
-            setContent(result);
-        } catch (error) {
-            console.error('[Error] Failed to generate article', error);
-            toast.error('Error occured while generating content');
-        } finally {
-            setGeneratingContent(false);
-        }
+    const handleSubmit = async (params: TContentCreateRequestParam) => {
+        const result = await generateContent(params);
+        setContent(result);
     };
 
     return (
