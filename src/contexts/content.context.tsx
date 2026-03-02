@@ -4,10 +4,7 @@ import { generateArticle } from '@/utils/apenai.ts';
 import toast from 'react-hot-toast';
 import { TGeneratedContent } from '@/shared/types/generated-content.ts';
 import { useLocalStorage } from 'react-use';
-import {
-    TPromptHistory,
-    TPromptLink
-} from '@/shared/types/prompt-history.type.ts';
+import { TPromptHistory, TPromptLink } from '@/shared/types/prompt-history.type.ts';
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -17,8 +14,10 @@ interface IContentContext {
     setGeneratingContent: (value: boolean) => void;
     generateContent: (
         params: TContentCreateRequestParam,
-    ) => Promise<string | null>;
+    ) => Promise<TGeneratedContent | null>;
     getPromptHistory: () => TPromptHistory[];
+    getContentById: (id: string) => TGeneratedContent;
+    updateById: (id: string, generatedContent: TGeneratedContent) => void;
 }
 
 export const ContentContext = createContext<IContentContext | null>(null);
@@ -43,21 +42,20 @@ const ContentContextProvider: FC<IProps> = ({ children }) => {
     );
 
     const generateContent = async (params: TContentCreateRequestParam) => {
-        let content = null;
-        getPromptHistory();
+        let generatedContent: TGeneratedContent | null = null;
         setGeneratingContent(true);
         const { title, description } = params;
         try {
-            content = await generateArticle(title, description);
+            const content = await generateArticle(title, description);
             if (content) {
-                const generatedContentItem: TGeneratedContent = {
+                generatedContent = {
                     id: uuidv4(),
                     title,
                     description,
                     content,
                     createdAt: dayjs().subtract(1, 'day').toDate(),
                 };
-                setContentItems([generatedContentItem, ...(contentItems || [])]);
+                setContentItems([generatedContent, ...(contentItems || [])]);
             }
         } catch (error) {
             console.error('[Error] Failed to generate article', error);
@@ -65,7 +63,7 @@ const ContentContextProvider: FC<IProps> = ({ children }) => {
         } finally {
             setGeneratingContent(false);
         }
-        return content;
+        return generatedContent;
     };
 
     const getPromptHistory = (): TPromptHistory[] => {
@@ -88,11 +86,28 @@ const ContentContextProvider: FC<IProps> = ({ children }) => {
         return Object.keys(groupedItems)
             .sort((a, b) => dayjs(b).diff(a))
             .map((date) => ({
-            date,
-            links: groupedItems[date],
-        }));
+                date,
+                links: groupedItems[date],
+            }));
     };
 
+    const getContentById = (id: string) => {
+        const generatedContent = contentItems?.find((item) => item.id === id);
+        if (!generatedContent) {
+            throw new Error('Content not found!');
+        }
+        return generatedContent;
+    };
+
+    const updateById = (id: string, generatedContent: TGeneratedContent) => {
+        const updatedContentItems = contentItems?.map((item) => {
+            if (item.id === id) {
+                return generatedContent;
+            }
+            return item;
+        });
+        setContentItems(updatedContentItems || []);
+    };
 
     return (
         <ContentContext.Provider
@@ -101,6 +116,8 @@ const ContentContextProvider: FC<IProps> = ({ children }) => {
                 setGeneratingContent,
                 generateContent,
                 getPromptHistory,
+                getContentById,
+                updateById
             }}
         >
             {children}
