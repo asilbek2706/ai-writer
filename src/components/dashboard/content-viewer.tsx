@@ -1,11 +1,12 @@
 import { Card, CardContent, CardFooter } from '@/components/ui/card.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { ClipboardIcon, ShareIcon, StarIcon } from '@heroicons/react/16/solid';
+import { ClipboardIcon, ShareIcon } from '@heroicons/react/16/solid';
 import toast from 'react-hot-toast';
 import { Pencil } from 'lucide-react';
 import { useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { TGeneratedContent } from '@/shared/types/generated-content.ts';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip.tsx';
 
 type ContentViewerProprs = {
     generatedContent: TGeneratedContent,
@@ -55,18 +56,42 @@ export default function ContentViewer({ generatedContent, onSave }: ContentViewe
                 <MDEditor.Markdown source={editedContent} style={{ whiteSpace: 'pre-wrap' }} />;
             </CardContent>
             <CardFooter className="flex gap-2 justify-end">
-                <Button variant={'outline'} onClick={handleEdit}>
-                    <Pencil className="h-4 w-4" />
-                </Button>
-                <Button variant={'outline'}>
-                    <ShareIcon className="h-4 w-4" />
-                </Button>
-                <Button variant={'outline'}>
-                    <ClipboardIcon className="h-4 w-4" onClick={handleCopy} />
-                </Button>
-                <Button variant={'outline'}>
-                    <StarIcon className="h-4 w-4" />
-                </Button>
+                <TooltipProvider>
+
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant={'outline'} onClick={handleEdit}>
+                                <Pencil className="h-4 w-4" />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Edit</p>
+                        </TooltipContent>
+                    </Tooltip>
+
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant={'outline'}>
+                                <ShareIcon className="h-4 w-4" />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Share</p>
+                        </TooltipContent>
+                    </Tooltip>
+
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant={'outline'}>
+                                <ClipboardIcon className="h-4 w-4" onClick={handleCopy} />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Copy</p>
+                        </TooltipContent>
+                    </Tooltip>
+
+                </TooltipProvider>
             </CardFooter>
         </Card>
     ) : (
