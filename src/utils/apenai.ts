@@ -8,46 +8,23 @@ export const generateArticle = async (title: string, description: string) => {
         return new Promise<string>((resolve) => {
             setTimeout(() => {
                 resolve(`
-                ---
-                    __Advertisement :)__
+                    🚀 Next.js-ning Asosiy Imkoniyatlari
+                    Next.js React-ning ustiga qurilgan bo'lsa-da, u oddiy React-dan bir qancha muhim afzalliklari bilan ajralib turadi:
                     
-                    - __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-                      resize in browser.
-                    - __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-                      i18n with plurals support and easy syntax.
+                    1. Rendering turlari
+                    Next.js loyihangiz ehtiyojiga qarab turli xil rendering usullarini tanlash imkonini beradi:
                     
-                    You will like those projects!
+                    SSR (Server-Side Rendering): Har bir so'rov kelganda sahifa serverda generatsiya qilinadi.
                     
-                    ---
+                    SSG (Static Site Generation): Sahifalar build (yig'ish) vaqtida bir marta yaratiladi va juda tez yuklanadi.
                     
-                    # h1 Heading 8-)
-                    ## h2 Heading
-                    ### h3 Heading
-                    #### h4 Heading
-                    ##### h5 Heading
-                    ###### h6 Heading
+                    ISR (Incremental Static Regeneration): Butun loyihani qayta yig'masdan, ma'lum bir sahifalarni fonda yangilab turish imkonini beradi.
                     
+                    2. Fayl tizimiga asoslangan routing (File-based Routing)
+                    Alohida kutubxona (masalan, react-router-dom) ishlatish shart emas. app/ yoki pages/ papkasida yaratilgan har bir fayl avtomatik ravishda saytning manziliga (route) aylanadi.
                     
-                    ## Horizontal Rules
-                    
-                    ___
-                    
-                    ---
-                    
-                    ***
-                    
-                    
-                    ## Typographic replacements
-                    
-                    Enable typographer option to see result.
-                    
-                    (c) (C) (r) (R) (tm) (TM) (p) (P) +-
-                    
-                    test.. test... test..... test?..... test!....
-                    
-                    !!!!!! ???? ,,  -- ---
-                    
-                    "Smartypants, double quotes" and 'single quotes'
+                    3. SEO va Tezlik
+                    Next.js qidiruv tizimlari (Google, Bing) uchun juda qulay. Sahifalar serverda tayyor holda kelgani uchun Google botlari sayt mazmunini oson o'qiydi. Shuningdek, rasmlarni optimallashtirish (next/image) va kodni bo'lish (Code Splitting) orqali yuqori tezlikni ta'minlaydi.
                 `);
             }, 2000);
         });
