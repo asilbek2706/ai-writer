@@ -16,6 +16,8 @@ import { AuthProvider } from '@/components/auth.context.tsx';
 import Login from '@/components/auth/login.tsx';
 import ProtectedRoute from '@/components/auth/protected-route.tsx';
 
+import './i18n.ts';
+
 const router = createBrowserRouter([
     {
         path: '/',
