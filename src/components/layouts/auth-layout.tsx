@@ -1,6 +1,17 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '@/components/auth.context.tsx';
+import { useEffect } from 'react';
 
 export default function AuthLayout() {
+    const navigate = useNavigate();
+    const {user} = useAuthContext()
+
+    useEffect(() => {
+        if (user) {
+            navigate('/dashboard');
+        }
+    }, [user, navigate]);
+
     return (
         <div className='h-screen grid md:grid-cols-2'>
             <div className='bg-black text-white px-4 py-10 hidden md:flex justify-between flex-col'>
