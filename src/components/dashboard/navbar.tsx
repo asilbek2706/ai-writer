@@ -25,11 +25,11 @@ type TLanguage = {
 
 const LANGUAGES: { [code in LanguageCode]: TLanguage } = {
     [LanguageCode.English]: {
-        label: 'English 🇬🇧',
-        flag: '🇬🇧',
+        label: 'English󠁧󠁢',
+        flag: 'en󠁧󠁢󠁷',
     },
     [LanguageCode.Uzbek]: {
-        label: "O'zbekcha 🇺🇿",
+        label: 'O\'zbekcha',
         flag: '🇺🇿',
     },
 };

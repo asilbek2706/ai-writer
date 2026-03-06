@@ -17,11 +17,12 @@ import Login from '@/components/auth/login.tsx';
 import ProtectedRoute from '@/components/auth/protected-route.tsx';
 
 import './i18n.ts';
+import Homepage from '@/pages/homepage.tsx';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <h1 className={'text-5xl'}>Home</h1>,
+        element: <Homepage />,
     },
     {
         path: 'dashboard',
