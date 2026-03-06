@@ -15,9 +15,10 @@ import Register from '@/components/auth/register.tsx';
 import { AuthProvider } from '@/components/auth.context.tsx';
 import Login from '@/components/auth/login.tsx';
 import ProtectedRoute from '@/components/auth/protected-route.tsx';
+import Homepage from '@/pages/homepage.tsx';
 
 import './i18n.ts';
-import Homepage from '@/pages/homepage.tsx';
+import './sentry.ts';
 
 const router = createBrowserRouter([
     {

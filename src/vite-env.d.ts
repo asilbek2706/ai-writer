@@ -1,9 +1,10 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-    readonly VITE_OPEN_AI_KEY: string
+    readonly VITE_OPEN_AI_KEY: string;
+    readonly VITE_SENTRY_DSN: string;
 }
 
 interface ImportMeta {
-    readonly env: ImportMetaEnv
+    readonly env: ImportMetaEnv;
 }
