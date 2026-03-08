@@ -20,7 +20,7 @@ export default function Footer() {
                         </h2>
                         <ul className="text-gray-500 dark:text-gray-400 font-medium">
                             <li className="mb-4">
-                                <Link to="/" className="hover:underline">
+                                <Link to="/privacy-policy" className="hover:underline" data-testid='@footer/privacy-policy'>
                                     Privacy Policy
                                 </Link>
                             </li>
