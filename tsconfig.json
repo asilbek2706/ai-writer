@@ -18,9 +18,8 @@
     "jsx": "react-jsx",
     "types": [
       "vitest/globals",
-      "testing-library/jest-dom/vitest"
+      "testing-library/jest-dom/"
     ],
-    /* Path Alias - SHADCN SHUNI QIDIRYAPTI */
     "baseUrl": ".",
     "paths": {
       "@/*": [
